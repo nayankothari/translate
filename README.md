@@ -32,3 +32,6 @@ else:
 
 https://en.wikipedia.org/wiki/ISO_639-1
 Examples: (e.g. en, ja, ko, pt, zh, zh-TW, ...)
+
+# logs 
+will be created in logs directory

@@ -54,10 +54,9 @@ class TranslationView(APIView):
                 translated_text=translated_text
             )      
             log.info("Create new translation record in database.")      
+            translation_lock.release()
             return Response({'translation': translated_text})
         except Exception as e:
-            log.exception(e.__str__())
-        
-        finally:
-            # Release the lock after translation
-            translation_lock.release()
+            log.exception(e.__str__())  
+            return Response({'error': 'Server not responding.'}, status=400)    
+                  
