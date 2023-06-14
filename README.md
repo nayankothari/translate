@@ -8,10 +8,8 @@ clone project from github repo: git@github.com:nayankothari/translator.git
 install requirement.txt with python -v 3.9.12 using pip3 
 
 
-## Endpoints
-
-### example using python request module.
-
+## Database 
+For now we are using sqlite3 database.
 
 # Available languages:
 
@@ -25,15 +23,15 @@ will be created in logs directory
 import json
 import requests
 
-def get_translation(token):
+def get_translation(token, source_lang, target_lang, source_text):
     """
     This function is use to get translations.
     """
     url = "http://localhost:8000/api/translate"
     query_params = {
-        "source_text": "Hello, Nayan Kothari, how are you today ?",
-        "source_lang": "en",
-        "target_lang": "es"
+        "source_text": source_text,
+        "source_lang": source_lang,
+        "target_lang": target_lang
                 }    
     headers = {'Authorization': f'Bearer {token}'}
     print("Request for translations.")
@@ -67,5 +65,8 @@ def get_tokens(username, password):
         print(f'Request failed with status code {response.status_code}')
 
 token = get_tokens(username="nayan", password="nayan")
-get_translation(token)
+message = "Hello Nayan, how are you today?"
+source_language = "en"
+target_language = "hi"
+get_translation(token, source_language, target_language, message)
         
