@@ -15,9 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import TranslationView
+from .views import TranslationView, get_token
 
 
 urlpatterns = [
     path('translate/', TranslationView.as_view(), name='translation'),
+    path('token/', get_token.as_view(), name='token'),
 ]   
